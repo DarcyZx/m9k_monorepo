@@ -19,7 +19,6 @@ SWEP.Primary.Sound            = "" -- Sound of the gun
 SWEP.Primary.Round            = ("") -- What kind of bullet?
 SWEP.Primary.RPM              = 0 -- This is in Rounds Per Minute
 SWEP.Primary.Cone             = 0.15 -- Accuracy of NPCs
-SWEP.Primary.Recoil           = 10
 SWEP.Primary.Damage           = 10
 SWEP.Primary.SpreadHip           = .01 --define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.NumShots         = 1
@@ -57,8 +56,6 @@ SWEP.data                     = {} -- The starting firemode
 SWEP.data.ironsights          = 1
 SWEP.ScopeScale               = 0.5
 SWEP.ReticleScale             = 0.5
-SWEP.IronSightsPos            = Vector( 2.4537, 1.0923, 0.2696 )
-SWEP.IronSightsAng            = Vector( 0.0186, -0.0547, 0 )
 
 function SWEP:Initialize()
     self:SetReloading( false )
@@ -245,32 +242,10 @@ function SWEP:Reload()
     end )
 end
 
-function SWEP:PostReloadScopeCheck()
-    self:SetReloading( false )
-    if self:GetOwner():KeyDown( IN_ATTACK2 ) then
-        if CLIENT then return end
-        self:GetOwner():SetFOV( 75 / self.Secondary.ScopeZoom, 0.15 )
-        self.IronSightsPos = self.SightsPos -- Bring it up
-        self.IronSightsAng = self.SightsAng -- Bring it up
-        self.DrawCrosshair = false
-        self:SetIronsights( true )
-        self:GetOwner():DrawViewModel( false )
-    elseif self:GetOwner():KeyDown( IN_SPEED ) then
-        if self:GetNextPrimaryFire() <= (CurTime() + 0.3) then
-            self:SetNextPrimaryFire( CurTime() + 0.3 ) -- Make it so you can't shoot for another quarter second
-        end
-        self.IronSightsPos = self.RunSightsPos -- Hold it down
-        self.IronSightsAng = self.RunSightsAng -- Hold it down
-        self:SetIronsights( true )
-        self:GetOwner():SetFOV( 0, 0.2 )
-    end
-end
-
 --[[---------------------------------------------------------
 IronSight
 -----------------------------------------------------------]]
 function SWEP:IronSight()
-    if not IsValid( self ) then return end
     if not IsValid( self:GetOwner() ) then return end
 
     if self.SelectiveFire and self.NextFireSelect < CurTime() and not (self:GetReloading()) then
@@ -343,6 +318,12 @@ function SWEP:IronSight()
         self.SwayScale = 1.0
         self.BobScale  = 1.0
     end
+
+    if ( not CLIENT ) or ( not IsFirstTimePredicted() and not game.SinglePlayer() ) then return end
+    self.bIron = self:GetIronsightsActive()
+    self.fIronTime = self:GetIronsightsTime()
+    self.CurrentTime = CurTime()
+    self.CurrentSysTime = SysTime()
 end
 
 function SWEP:DrawHUD()

@@ -12,7 +12,7 @@ SWEP.Slot                   = 4 -- Slot in the weapon selection menu
 SWEP.SlotPos                = 31 -- Position in the slot
 SWEP.DrawAmmo               = true -- Should draw the default HL2 ammo counter
 SWEP.DrawCrosshair          = false -- set false if you want no crosshair
-SWEP.Weight                 = 30 -- rank relative ot other weapons. bigger is better
+SWEP.Weight                 = 30 -- rank relative to other weapons. bigger is better
 SWEP.AutoSwitchTo           = true -- Auto switch to if we pick it up
 SWEP.AutoSwitchFrom         = true -- Auto switch from if you pick up a better weapon
 SWEP.HoldType               = "rpg" -- how others view you carrying the weapon
@@ -38,7 +38,7 @@ SWEP.Primary.KickHorizontal = 0 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = false -- Automatic = true; Semi Auto = false
 SWEP.Primary.Ammo           = "Nuclear_Warhead"
 -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
--- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a metal peircing shotgun slug
+-- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a metal piercing shotgun slug
 
 SWEP.Primary.Round          = ("m9k_launched_davycrockett") --NAME OF ENTITY GOES HERE
 
@@ -50,9 +50,6 @@ SWEP.Primary.SpreadHip         = 0 -- Define from-the-hip accuracy (1 is terribl
 SWEP.Primary.SpreadIronSights   = 0 -- Ironsight accuracy, should be the same for shotguns
 --none of this matters for IEDs and other ent-tossing sweps
 
--- Enter iron sight info and bone mod info below
-SWEP.IronSightsPos          = Vector( -3.7384, -5.7481, -0.2713 )
-SWEP.IronSightsAng          = Vector( 1.1426, 0.0675, 0 )
 SWEP.SightsPos              = Vector( -3.7384, -5.7481, -0.2713 )
 SWEP.SightsAng              = Vector( 1.1426, 0.0675, 0 )
 SWEP.RunSightsPos           = Vector( 2.4946, -1.5644, 1.699 )
@@ -109,11 +106,9 @@ function SWEP:Deploy()
 end
 
 function SWEP:DeployCountDownFunc( count )
-    if not IsValid( self ) then return end
     if not IsValid( self:GetOwner() ) then return end
-    if not IsValid( self ) then return end
     if self:GetOwner():GetActiveWeapon():GetClass() ~= self.Gun then
-        timer.Destroy( "davy_crocket_" .. self:GetOwner():UniqueID() )
+        timer.Remove( "davy_crocket_" .. self:GetOwner():UniqueID() )
         return
     end
     if count == 0 then
@@ -173,7 +168,7 @@ function SWEP:Holster()
             self:ResetBonePositions( vm )
         end
     end
-    if timer.Exists( "davy_crocket_" .. self:GetOwner():UniqueID() ) then timer.Destroy( "davy_crocket_" .. self:GetOwner():UniqueID() ) end
+    if timer.Exists( "davy_crocket_" .. self:GetOwner():UniqueID() ) then timer.Remove( "davy_crocket_" .. self:GetOwner():UniqueID() ) end
     return true
 end
 
@@ -199,7 +194,6 @@ end
 IronSight
 -------------------------------------------------------]]
 function SWEP:IronSight()
-    if not IsValid( self ) then return end
     if not IsValid( self:GetOwner() ) then return end
 
     if not self:GetOwner():IsNPC() then

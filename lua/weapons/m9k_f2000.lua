@@ -14,7 +14,7 @@ SWEP.SlotPos                  = 27 -- Position in the slot
 SWEP.DrawAmmo                 = true -- Should draw the default HL2 ammo counter
 SWEP.DrawCrosshair            = true -- Set false if you want no crosshair from hip
 SWEP.XHair                    = true -- Used for returning crosshair after scope. Must be the same as DrawCrosshair
-SWEP.Weight                   = 30 -- Rank relative ot other weapons. bigger is better
+SWEP.Weight                   = 30 -- rank relative to other weapons. bigger is better
 SWEP.AutoSwitchTo             = true -- Auto switch to if we pick it up
 SWEP.AutoSwitchFrom           = true -- Auto switch from if you pick up a better weapon
 SWEP.BoltAction               = false -- Is this a bolt action rifle?
@@ -39,7 +39,7 @@ SWEP.Primary.KickDown         = .4 -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal   = .4 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic        = true -- Automatic/Semi Auto
 SWEP.Primary.Ammo             = "smg1" -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
--- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal peircing shotgun pellets
+-- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal piercing shotgun pellets
 SWEP.SelectiveFire            = true
 
 SWEP.Secondary.ScopeZoom      = 4
@@ -62,10 +62,7 @@ SWEP.Primary.Damage           = 23 --base damage per bullet
 SWEP.Primary.SpreadHip           = .025 --define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights     = .015 -- ironsight accuracy, should be the same for shotguns
 
--- enter iron sight info and bone mod info below
 
-SWEP.IronSightsPos            = Vector( 3.499, 0, 1.08 )
-SWEP.IronSightsAng            = Vector( 0, 0, 0 )
 SWEP.SightsPos                = Vector( 3.499, 0, 1.08 )
 SWEP.SightsAng                = Vector( 0, 0, 0 )
 SWEP.RunSightsPos             = Vector( -7.705, -2.623, 1.475 )

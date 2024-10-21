@@ -13,7 +13,7 @@ SWEP.Slot                     = 4 -- Slot in the weapon selection menu
 SWEP.SlotPos                  = 35 -- Position in the slot
 SWEP.DrawAmmo                 = true -- Should draw the default HL2 ammo counter
 SWEP.DrawCrosshair            = false -- Set false if you want no crosshair from hip
-SWEP.Weight                   = 50 -- Rank relative ot other weapons. bigger is better
+SWEP.Weight                   = 50 -- rank relative to other weapons. bigger is better
 SWEP.AutoSwitchTo             = true -- Auto switch to if we pick it up
 SWEP.AutoSwitchFrom           = true -- Auto switch from if you pick up a better weapon
 SWEP.XHair                    = false -- Used for returning crosshair after scope. Must be the same as DrawCrosshair
@@ -49,10 +49,7 @@ SWEP.data                     = {} --The starting firemode
 SWEP.data.ironsights          = 1
 SWEP.ScopeScale               = 1
 
--- enter iron sight info and bone mod info below
 
-SWEP.IronSightsPos            = Vector( -3.589, -8.867, -4.124 )
-SWEP.IronSightsAng            = Vector( 50.353, 17.884, -19.428 )
 SWEP.SightsPos                = Vector( -3.589, -8.867, -4.124 )
 SWEP.SightsAng                = Vector( 50.353, 17.884, -19.428 )
 SWEP.RunSightsPos             = Vector( 0, 0, 0 )

@@ -13,7 +13,7 @@ SWEP.Slot                   = 2 -- Slot in the weapon selection menu
 SWEP.SlotPos                = 44 -- Position in the slot
 SWEP.DrawAmmo               = true -- Should draw the default HL2 ammo counter
 SWEP.DrawCrosshair          = true -- set false if you want no crosshair
-SWEP.Weight                 = 30 -- rank relative ot other weapons. bigger is better
+SWEP.Weight                 = 30 -- rank relative to other weapons. bigger is better
 SWEP.AutoSwitchTo           = true -- Auto switch to if we pick it up
 SWEP.AutoSwitchFrom         = true -- Auto switch from if you pick up a better weapon
 SWEP.HoldType               = "smg" -- how others view you carrying the weapon
@@ -39,7 +39,7 @@ SWEP.Primary.KickDown       = 0.1 -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal = 0.2 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = true -- Automatic = true; Semi Auto = false
 SWEP.Primary.Ammo           = "smg1" -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
--- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal peircing shotgun pellets
+-- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal piercing shotgun pellets
 
 SWEP.SelectiveFire          = true
 
@@ -55,24 +55,7 @@ SWEP.Primary.Damage         = 15 -- Base damage per bullet
 SWEP.Primary.SpreadHip         = .025 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .015 -- Ironsight accuracy, should be the same for shotguns
 
--- Enter iron sight info and bone mod info below
-SWEP.IronSightsPos          = Vector( 3.342, 0, 0.759 )
-SWEP.IronSightsAng          = Vector( 2.46, -0.025, 0 )
-SWEP.SightsPos              = Vector( 3.342, 0, 0.759 )
+SWEP.SightsPos              = Vector( 3.342, 0, 0.514 )
 SWEP.SightsAng              = Vector( 2.46, -0.025, 0 )
 SWEP.RunSightsPos           = Vector( -4.646, -4.173, 0 )
 SWEP.RunSightsAng           = Vector( -10.197, -53.189, 0 )
-
-SWEP.WElements              = {
-    ["eotech"] = { type = "Model", model = "models/wystan/attachments/eotech557sight.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector( -7.539, 1.485, 10.295 ), angle = Angle( -172.297,
-        180, 0 ), size = Vector( 1.378, 1.378, 1.378 ), color = Color( 255, 255, 255, 255 ), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
-}
-
-SWEP.VElements              = {
-    ["eotech"] = { type = "Model", model = "models/wystan/attachments/eotech557sight.mdl", bone = "DrawCall_0", rel = "", pos = Vector( -0.281, 10.85, -6.398 ), angle = Angle( 0, 90, 0 ), size = Vector(
-        1, 1, 1 ), color = Color( 255, 255, 255, 255 ), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
-}
-
-SWEP.ViewModelBoneMods      = {
-    ["DrawCall_0009"] = { scale = Vector( 1, 1, 1 ), pos = Vector( -0.154, 0, 0 ), angle = Angle( 0, 0, 0 ) }
-}

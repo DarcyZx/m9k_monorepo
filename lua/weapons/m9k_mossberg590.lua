@@ -13,7 +13,7 @@ SWEP.Slot                   = 3 -- Slot in the weapon selection menu
 SWEP.SlotPos                = 25 -- Position in the slot
 SWEP.DrawAmmo               = true -- Should draw the default HL2 ammo counter
 SWEP.DrawCrosshair          = true -- set false if you want no crosshair
-SWEP.Weight                 = 30 -- rank relative ot other weapons. bigger is better
+SWEP.Weight                 = 30 -- rank relative to other weapons. bigger is better
 SWEP.AutoSwitchTo           = true -- Auto switch to if we pick it up
 SWEP.AutoSwitchFrom         = true -- Auto switch from if you pick up a better weapon
 SWEP.HoldType               = "shotgun" -- how others view you carrying the weapon
@@ -37,7 +37,7 @@ SWEP.Primary.KickDown       = 0.8 -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal = 0.8 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = false -- Automatic/Semi Auto
 SWEP.Primary.Ammo           = "buckshot" -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
--- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal peircing shotgun pellets
+-- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal piercing shotgun pellets
 
 SWEP.Secondary.IronFOV      = 60 -- How much you 'zoom' in. Less is more!
 SWEP.ShellTime              = .5
@@ -49,14 +49,9 @@ SWEP.Primary.NumShots       = 10 -- How many bullets to shoot per trigger pull, 
 SWEP.Primary.Damage         = 9 -- Base damage per bullet
 SWEP.Primary.SpreadHip         = .03 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .03 -- Ironsight accuracy, should be the same for shotguns
--- Because irons don't magically give you less pellet spread!
 
--- Enter iron sight info and bone mod info below
-SWEP.IronSightsPos          = Vector( -2.72, -3.143, 1.26 )
-SWEP.IronSightsAng          = Vector( 0, -0.75, 3 )
 SWEP.SightsPos              = Vector( -2.72, -3.143, 1.26 )
 SWEP.SightsAng              = Vector( 0, -0.75, 3 )
 SWEP.RunSightsPos           = Vector( 7, -9.429, -0.857 )
 SWEP.RunSightsAng           = Vector( -7, 63, 0 )
-
-
+SWEP.IronsightsBlowback = false

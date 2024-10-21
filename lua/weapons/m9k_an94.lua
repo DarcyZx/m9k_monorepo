@@ -13,7 +13,7 @@ SWEP.Slot                   = 2 -- Slot in the weapon selection menu
 SWEP.SlotPos                = 25 -- Position in the slot
 SWEP.DrawAmmo               = true -- Should draw the default HL2 ammo counter
 SWEP.DrawCrosshair          = true -- set false if you want no crosshair
-SWEP.Weight                 = 30 -- rank relative ot other weapons. bigger is better
+SWEP.Weight                 = 30 -- rank relative to other weapons. bigger is better
 SWEP.AutoSwitchTo           = true -- Auto switch to if we pick it up
 SWEP.AutoSwitchFrom         = true -- Auto switch from if you pick up a better weapon
 SWEP.HoldType               = "ar2" -- how others view you carrying the weapon
@@ -39,7 +39,7 @@ SWEP.Primary.KickDown       = 0.1 -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal = 0.3 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = true -- Automatic = true; Semi Auto = false
 SWEP.Primary.Ammo           = "ar2" -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
--- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal peircing shotgun pellets
+-- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal piercing shotgun pellets
 
 SWEP.SelectiveFire          = true
 
@@ -53,10 +53,7 @@ SWEP.Primary.Damage         = 31 -- Base damage per bullet
 SWEP.Primary.SpreadHip         = .015 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .005 -- Ironsight accuracy, should be the same for shotguns
 
--- Enter iron sight info and bone mod info below
-SWEP.IronSightsPos          = Vector( 4.552, 0, 3.062 )
-SWEP.IronSightsAng          = Vector( 0.93, -0.5, 0 )
-SWEP.SightsPos              = Vector( 4.552, 0, 3.062 )
+SWEP.SightsPos              = Vector( 4.552, 0, 2.95 )
 SWEP.SightsAng              = Vector( 0.93, -0.5, 0 )
 SWEP.RunSightsPos           = Vector( -5.277, -8.584, 2.598 )
 SWEP.RunSightsAng           = Vector( -12.954, -52.088, 0 )
@@ -110,13 +107,7 @@ function SWEP:PrimaryAttack()
         if not self:GetOwner():KeyDown( IN_SPEED ) and not self:GetOwner():KeyDown( IN_RELOAD ) then
             self:ShootBulletInformation()
             self:TakePrimaryAmmo( self.ShootThese )
-            if self.Silenced then
-                self:SendWeaponAnim( ACT_VM_PRIMARYATTACK_SILENCED )
-                self:EmitSound( self.Primary.SilencedSound )
-            else
-                self:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
-                self:EmitSound( self.Primary.Sound )
-            end
+            self:FireAnimation()
 
             local fx = EffectData()
             fx:SetEntity( self )
@@ -134,7 +125,6 @@ function SWEP:PrimaryAttack()
     elseif self:CanPrimaryAttack() and self:GetOwner():IsNPC() then
         self:ShootBulletInformation()
         self:TakePrimaryAmmo( self.ShootThese )
-        self:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
         self:EmitSound( self.Primary.Sound )
         self:GetOwner():SetAnimation( PLAYER_ATTACK1 )
         self:GetOwner():MuzzleFlash()

@@ -13,7 +13,7 @@ SWEP.Slot                   = 4 -- Slot in the weapon selection menu
 SWEP.SlotPos                = 29 -- Position in the slot
 SWEP.DrawAmmo               = true -- Should draw the default HL2 ammo counter
 SWEP.DrawCrosshair          = true -- set false if you want no crosshair
-SWEP.Weight                 = 30 -- rank relative ot other weapons. bigger is better
+SWEP.Weight                 = 30 -- rank relative to other weapons. bigger is better
 SWEP.AutoSwitchTo           = true -- Auto switch to if we pick it up
 SWEP.AutoSwitchFrom         = true -- Auto switch from if you pick up a better weapon
 SWEP.HoldType               = "shotgun" -- how others view you carrying the weapon
@@ -53,16 +53,12 @@ SWEP.Primary.Damage         = 30 -- Base damage per bullet
 SWEP.Primary.SpreadHip         = .025 -- Define from-the-hip accuracy (1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .015 -- Ironsight accuracy, should be the same for shotguns
 
--- Enter iron sight info and bone mod info below
-SWEP.IronSightsPos          = Vector( -4.633, -7.651, 2.108 )
-SWEP.IronSightsAng          = Vector( 1.294, 0.15, 0 )
 SWEP.SightsPos              = Vector( -4.633, -7.651, 2.108 )
 SWEP.SightsAng              = Vector( 1.294, 0.15, 0 )
 SWEP.RunSightsPos           = Vector( 3.279, -5.574, 0 )
 SWEP.RunSightsAng           = Vector( -1.721, 49.917, 0 )
 
 function SWEP:Deploy()
-    if not IsValid( self ) then return end
     if not IsValid( self:GetOwner() ) then return end
     if not self:GetOwner():IsPlayer() then return end
 
@@ -124,7 +120,6 @@ function SWEP:FireRocket()
 end
 
 function SWEP:Reload()
-    if not IsValid( self ) then return end
     if not IsValid( self:GetOwner() ) then return end
     if not self:GetOwner():IsPlayer() then return end
 
@@ -148,17 +143,14 @@ function SWEP:Reload()
 
         if SERVER and self:GetOwner():Alive() then
             local timerName = "ShotgunReload_" .. self:GetOwner():UniqueID()
-            timer.Create( timerName,
-                (self.ShellTime + .05),
-                shellz,
-                function()
-                    if not IsValid( self ) then return end
-                    if IsValid( self:GetOwner() ) and IsValid( self ) then
-                        if self:GetOwner():Alive() then
-                            self:InsertShell()
-                        end
+            timer.Create( timerName, self.ShellTime + .05, shellz, function()
+                if not IsValid( self ) then return end
+                if IsValid( self:GetOwner() ) and IsValid( self ) then
+                    if self:GetOwner():Alive() then
+                        self:InsertShell()
                     end
-                end )
+                end
+            end )
         end
     elseif self:GetOwner():IsNPC() then
         self:DefaultReload( ACT_VM_RELOAD )
@@ -166,7 +158,6 @@ function SWEP:Reload()
 end
 
 function SWEP:Think()
-    if not IsValid( self ) then return end
     if not IsValid( self:GetOwner() ) then return end
     if not self:GetOwner():IsPlayer() then return end
 

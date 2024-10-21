@@ -13,7 +13,7 @@ SWEP.Slot                   = 3 -- Slot in the weapon selection menu
 SWEP.SlotPos                = 21 -- Position in the slot
 SWEP.DrawAmmo               = true -- Should draw the default HL2 ammo counter
 SWEP.DrawCrosshair          = true -- set false if you want no crosshair
-SWEP.Weight                 = 30 -- rank relative ot other weapons. bigger is better
+SWEP.Weight                 = 30 -- rank relative to other weapons. bigger is better
 SWEP.AutoSwitchTo           = true -- Auto switch to if we pick it up
 SWEP.AutoSwitchFrom         = true -- Auto switch from if you pick up a better weapon
 SWEP.HoldType               = "shotgun" -- how others view you carrying the weapon
@@ -37,7 +37,7 @@ SWEP.Primary.KickDown       = 5 -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal = 5 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = false -- Automatic/Semi Auto
 SWEP.Primary.Ammo           = "buckshot" -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
--- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal peircing shotgun pellets
+-- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal piercing shotgun pellets
 
 SWEP.Secondary.IronFOV      = 0 -- How much you 'zoom' in. Less is more!
 
@@ -50,11 +50,7 @@ SWEP.Primary.NumShots       = 18 -- How many bullets to shoot per trigger pull, 
 SWEP.Primary.Damage         = 10 -- Base damage per bullet
 SWEP.Primary.SpreadHip         = .03 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .03 -- Ironsight accuracy, should be the same for shotguns
--- Because irons don't magically give you less pellet spread!
 
--- Enter iron sight info and bone mod info below
-SWEP.IronSightsPos          = Vector( 0, 0, 0 )
-SWEP.IronSightsAng          = Vector( 0, 0, 0 )
 SWEP.SightsPos              = Vector( 0, 0, 0 )
 SWEP.SightsAng              = Vector( 0, 0, 0 )
 SWEP.RunSightsPos           = Vector( 11.475, -7.705, -2.787 )
@@ -118,13 +114,8 @@ function SWEP:PrimaryAttack()
             self:ShootBulletInformation()
             self:TakePrimaryAmmo( 1 )
 
-            if self.Silenced then
-                self:SendWeaponAnim( ACT_VM_PRIMARYATTACK_SILENCED )
-                self:EmitSound( self.Primary.SilencedSound )
-            else
-                self:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
-                self:EmitSound( self.Primary.Sound )
-            end
+            self:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
+            self:EmitSound( self.Primary.Sound )
 
             local fx = EffectData()
             fx:SetEntity( self )
@@ -153,15 +144,13 @@ end
 
 function SWEP:ShootBulletInformation2()
     local CurrentDamage
-    local CurrentRecoil
     local basedamage
     local damagedice = math.Rand( 0.95, 1.05 )
 
     basedamage = damageMultiplier * self.Primary.Damage
     CurrentDamage = basedamage * damagedice
-    CurrentRecoil = self.Primary.Recoil
 
-    self:ShootBullet( CurrentDamage, CurrentRecoil, 31, .06 )
+    self:ShootBullet( CurrentDamage, 31, .06 )
 end
 
 --[[---------------------------------------------------------
@@ -169,7 +158,6 @@ end
    Desc: Reload is being pressed.
 -----------------------------------------------------------]]
 function SWEP:Reload()
-    if not IsValid( self ) then return end
     if not IsValid( self:GetOwner() ) then return end
     if not self:GetOwner():IsPlayer() then return end
 
@@ -208,7 +196,6 @@ function SWEP:Reload()
 end
 
 function SWEP:Think()
-    if not IsValid( self ) then return end
     if not IsValid( self:GetOwner() ) then return end
     if not self:GetOwner():IsPlayer() then return end
     if self:GetOwner().NextReload == nil then self:GetOwner().NextReload = CurTime() + 1 end
@@ -222,7 +209,6 @@ function SWEP:Think()
 end
 
 function SWEP:InsertShell()
-    if not IsValid( self ) then return end
     if not IsValid( self:GetOwner() ) then return end
     if not self:GetOwner():IsPlayer() then return end
 

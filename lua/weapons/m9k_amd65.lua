@@ -13,7 +13,7 @@ SWEP.Slot                   = 2 -- Slot in the weapon selection menu
 SWEP.SlotPos                = 24 -- Position in the slot
 SWEP.DrawAmmo               = true -- Should draw the default HL2 ammo counter
 SWEP.DrawCrosshair          = true -- set false if you want no crosshair
-SWEP.Weight                 = 30 -- rank relative ot other weapons. bigger is better
+SWEP.Weight                 = 30 -- rank relative to other weapons. bigger is better
 SWEP.AutoSwitchTo           = true -- Auto switch to if we pick it up
 SWEP.AutoSwitchFrom         = true -- Auto switch from if you pick up a better weapon
 SWEP.HoldType               = "ar2" -- how others view you carrying the weapon
@@ -50,16 +50,7 @@ SWEP.Primary.SpreadIronSights   = .011 -- Ironsight accuracy, should be the same
 
 SWEP.SelectiveFire = true
 
---just cleaning up an empty spot that bugs me
-SWEP.VElements     = {
-    ["element"] = { type = "Model", model = "models/Mechanics/wheels/wheel_speed_72.mdl", bone = "Havana Daydreamin", rel = "", pos = Vector( -0.15, -5.336, 1.608 ), angle = Angle( 0, 0, 90 ), size =
-        Vector( 0.009, 0.009, 0.009 ), color = Color( 255, 255, 255, 255 ), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
-}
-
-SWEP.IronSightsPos = Vector( 3.5, -2.21, 2.115 )
-SWEP.IronSightsAng = Vector( -3.701, 0, 0 )
-SWEP.SightsPos     = Vector( 3.5, -2.21, 2.115 )
+SWEP.SightsPos     = Vector( 3.5, -1, 2.115 )
 SWEP.SightsAng     = Vector( -3.701, 0, 0 )
 SWEP.RunSightsPos  = Vector( -5.198, -9.164, 0 )
 SWEP.RunSightsAng  = Vector( -8.825, -70, 0 )
-
